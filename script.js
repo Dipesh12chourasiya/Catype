@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //Function to check typed character
   function checkCharacter(inputChar, targetChar) {
     if (inputChar !== targetChar) {
-      currentIndex--;
+      // currentIndex--;
       errors++;
       //play error sound
       new Audio("/error.mp3").play();

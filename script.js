@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const typingInputElement = document.getElementById("typing-input");
   const speedElement = document.getElementById("speed");
   const accuracyElement = document.getElementById("accuracy");
-
+console.log("hiii");
   //Text to display
   const sampleTexts = [
     "World, when we enter into it, seems all new and exciting. But as we grow more and more and reach our final phase of living, all we realize is that life is all about nothingness and will end someday.",

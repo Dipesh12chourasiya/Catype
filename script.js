@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       messageArea.textContent = "";
       hurray.innerHTML = ``;
-    }, 3000);
+    }, 6000);
   }
   //Event listener for typing input
   typingInputElement.addEventListener("input", (e) => {

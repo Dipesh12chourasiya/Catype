@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const typingInputElement = document.getElementById("typing-input");
   const speedElement = document.getElementById("speed");
   const accuracyElement = document.getElementById("accuracy");
-console.log("hiii");
+// console.log("hiii");
   //Text to display
   const sampleTexts = [
     "World, when we enter into it, seems all new and exciting. But as we grow more and more and reach our final phase of living, all we realize is that life is all about nothingness and will end someday.",
@@ -24,7 +24,6 @@ console.log("hiii");
     `The fear is what keeps you alive Break the fucking chains, take back your life The fear is what keeps you insane Break the fucking chains, take away the pain, yeah`,
     `I want you to know that I m never leaving 'Cause I'm Mrs. Snow. 'Til death we'll be freezing Yeah, you are my home, my home for all seasons So, come on, let's go`
   ];
-  console.log(sampleTexts.length)
   //initial values
   let currentIndex = 0;
   let startTime = new Date();
@@ -63,6 +62,7 @@ console.log("hiii");
   //Function to check typed character
   function checkCharacter(inputChar, targetChar) {
     if (inputChar !== targetChar) {
+      currentIndex--;
       errors++;
       //play error sound
       new Audio("/error.mp3").play();
@@ -83,7 +83,7 @@ console.log("hiii");
     setTimeout(() => {
       messageArea.textContent = "";
       hurray.innerHTML = ``;
-    }, 6000);
+    }, 4000);
   }
   //Event listener for typing input
   typingInputElement.addEventListener("input", (e) => {

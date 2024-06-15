@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing Game</title>
+    <link rel="icon" type="image/x-icon" href="https://wallpapercave.com/wp/wp2610997.jpg">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="game-container">
+      <h1>Typing Practice Game</h1>
+      <p id="text-to-type">Here will be the text the user needs to type...</p>
+      <input type="text" class="input-text" id="typing-input" placeholder="Start typing here..." />
+      <div id="feedback">
+        <p>Speed: <span id="speed">0</span> WPM</p>
+        <p>Accuracy: <span id="accuracy">100</span>%</p>
+      </div>
+      <div id="message-area"></div>
+      <div id="hurrya-img"></div>
+      <button onclick="window.location.reload()" class="glow-on-hover" type="button">Restart The Game</button>
+      <p style="margin-top: 30px; color: rgb(162, 162, 162);"><span style="color: white;">Note :</span> Please Restart The game if you make any mistake while typing.</p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

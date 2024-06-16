@@ -1,194 +1,223 @@
-/* Basic Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap');
+:root{
+    --bgColor: #333;
+    --textPrimary: #fff;
+    --textSecondary: #666;
+    --primaryColor: rgb(10, 228, 252);
+}
+body{
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(45deg, rgb(65, 80, 95) 0.00%, rgb(36, 37, 38) 100.00%);
+    color: var(--textPrimary);
+    font-size: 1.4rem;
+}
+main{
+    width: 600px;
+    margin: 50px auto;
+}
+h1{
+    color: var(--primaryColor);
 }
 
-:root {
-  --input-border: #8b8a8b;
-  --input-focus-h: 245;
-  --input-focus-s: 100%;
-  --input-focus-l: 42%;
+#header{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 20px 6px 30px;
+}
+#buttons{
+    text-align: right;
+}
+#info{
+    color: white;
+}
+button{
+    background: rgba(255,255,255,.2);
+    border:0;
+    color: rgba(255,255,255,.5);
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+div#game{
+    line-height:35px;
+    height:105px;
+    overflow: hidden;
+    position: relative;
+}
+div#game:focus{
+    outline:0;
+}
+#words{
+    filter: blur(5px);
+    color: var(--textSecondary);
+}
+#game:focus #words{
+    filter: blur(0);
+}
+#focus-error {
+    position: absolute;
+    inset: 0;
+    text-align: center;
+    padding-top: 35px;
+}
+#game:focus #focus-error{
+    display:none;
+}
+div.word{
+    display: inline-block;
+    font-family: 'Roboto Mono', monospace;
+    margin: 0 5px;
+}
+.letter.correct{
+    color: #fff;
+}
+.letter.incorrect{
+    color: red;
+}
+@keyframes blink{
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+#cursor{
+    display:none;
+    width: 2px;
+    height: 1.6rem;
+    background: var(--primaryColor);
+    position: fixed;
+    top: 198px;
+    left: 18px;
+    animation: blink .3s infinite;
+}
+#game:focus #cursor{
+    display: block;
+}
+#game.over #words{
+    opacity: .5;
+    filter: blur(0px);
+}
+#game.over:focus #cursor{
+    display:none;
+}
+#game.over #focus-error {
+    display: none;
 }
 
-body,
-html {
-  font-family: 'Times New Roman', Times, serif,sans-serif;
-  display: flex;
-  justify-content: center;
+#img-con{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+#img-letsGo{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+#img-letsGo img{
+    border-radius: 50%;
+}
+
+#img-con img:hover,  #img-letsGo img:hover{
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 0.4s;
+  
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;
+  }
+  
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.glow-on-hover{
+    background-color: #333;
+}
+.glow-on-hover:hover{
+    background-color: black;
+    transition: 0.4;
+}
+
+
+.click-text{
+    color: rgba(9, 155, 192, 0.941);
+    cursor: pointer;
+}
+.click-text:hover{
+    color: rgb(3, 255, 255);
+}
+
+
+
+
+
+
+/* CSS  for button */
+.button-84 {
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(35deg, rgb(82, 72, 81), rgb(43, 2, 63));
-  color: #ffffff;
-}
-
-#game-container {
-  padding: 40px;
-  border-radius: 15px;
-  background: linear-gradient(45deg, rgb(66, 6, 78), rgba(101, 3, 134, 0.682));;
-  box-shadow: 0 5px 15px rgba(45, 45, 45, 0.5);
-  width: 80vw;
-  text-align: center;
-}
-
-h1 {
-  color: white;
-  margin-bottom: 20px;
-  font-size: 2.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-
-#text-to-type {
-  margin: 20px 0;
-  padding: 15px;
+  background-color: initial;
+  background-image: linear-gradient(#464d55, #25292e);
   border-radius: 8px;
-  background-color: rgba(34, 82, 95, 0.723);
-  font-size: 1.7rem;
-  animation: fadeIn 1s ease-out forwards;
-}
-.input-text{
-  font-size: 16px;
-  font-size: max(16px, 1em);
-  font-family: inherit;
-  padding: 0.25em 0.5em;
-  background-color: #fff;
-  border: 2px solid var(--input-border);
-  border-radius: 4px;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-#typing-input {
-  width: calc(100% - 24px);
-  padding: 12px;
-  border: 2px solid #ff79c6;
-  border-radius: 8px;
-  background-color: #282a36;
-  color: #f8f8f2;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-}
-
-#typing-input:focus {
-  outline: none;
-  border-color: #50fa7b;
-}
-
-#feedback {
-  display: flex;
-  justify-content: center;
-  gap: 7em;
-}
-#feedback p {
-  margin-top: 20px;
-  font-size: 1.5rem;
-  color: white;
-}
-#speed{
-  color: rgb(20, 247, 20);
-  font-weight: 600;
-}
-#accuracy{
-  color: rgb(20, 247, 20);
-  font-weight: 600;
-}
-.correct {
-  color: #50fa7b;
-}
-
-.incorrect {
-  color: #ff5555;
-}
-
-#message-area {
-  font-weight: bold;
-  min-height: 22px;
-  color: #ffb86c;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 2rem;
-  }
-
-  #text-to-type,
-  #typing-input {
-    font-size: 1rem;
-  }
-}
-
-
-/* button css */
-.glow-on-hover {
-  width: 220px;
-  height: 50px;
-  border: none;
-  outline: none;
+  border-width: 0;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .1),0 3px 6px rgba(0, 0, 0, .05);
+  box-sizing: border-box;
   color: #fff;
-  background: #111;
   cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  font-family: expo-brand-demi,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 18px;
+  height: 52px;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 32px;
+  text-align: center;
+  text-decoration: none;
+  transform: translate3d(0, 0, 0);
+  transition: all 150ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
   position: relative;
-  z-index: 0;
-  border-radius: 10px;
+  top: -80px;
 }
 
-.glow-on-hover:before {
-  content: '';
-  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-  position: absolute;
-  top: -2px;
-  left:-2px;
-  background-size: 400%;
-  z-index: -1;
-  filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowing 20s linear infinite;
-  opacity: 0;
-  transition: opacity .3s ease-in-out;
-  border-radius: 10px;
+.button-84:hover {
+  box-shadow: rgba(0, 1, 0, .2) 0 2px 8px;
+  opacity: .85;
 }
 
-.glow-on-hover:active {
-  color: #000
+.button-84:active {
+  outline: 0;
 }
 
-.glow-on-hover:active:after {
-  background: transparent;
+.button-84:focus {
+  box-shadow: rgba(0, 0, 0, .5) 0 0 0 3px;
 }
 
-.glow-on-hover:hover:before {
-  opacity: 1;
-}
-
-.glow-on-hover:after {
-  z-index: -1;
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #111;
-  left: 0;
-  top: 0;
-  border-radius: 10px;
-}
-
-@keyframes glowing {
-  0% { background-position: 0 0; }
-  50% { background-position: 400% 0; }
-  100% { background-position: 0 0; }
+@media (max-width: 420px) {
+  .button-84 {
+    height: 48px;
+  }
 }
